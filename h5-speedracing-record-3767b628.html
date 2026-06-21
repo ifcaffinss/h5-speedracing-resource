@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简洁手记 · 极速赛车</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fce8d5 0%, #f6d5b3 80%, #f0c9a0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+      color: #3a2e26;
+    }
+
+    .blog-card {
+      max-width: 780px;
+      width: 100%;
+      background: #fffcf8;
+      border-radius: 40px;
+      box-shadow: 0 20px 40px rgba(150, 100, 60, 0.12), 0 8px 16px rgba(0, 0, 0, 0.03);
+      padding: 3rem 2.5rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 1rem;
+      }
+      .blog-card {
+        padding: 2rem 1.5rem;
+        border-radius: 28px;
+      }
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #3b2c1f;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: #9b8570;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid #efe5da;
+      padding-bottom: 1rem;
+    }
+
+    .article-meta span {
+      background: #f2e7dc;
+      padding: 0.15rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #6f5b47;
+      letter-spacing: 0.3px;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      background: #fbf4ec;
+      padding: 1.2rem 1.6rem;
+      border-radius: 24px;
+      margin-bottom: 2.2rem;
+      color: #3f3227;
+      border-left: 5px solid #dbb48b;
+    }
+
+    .lead strong {
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 550;
+      margin: 1.8rem 0 0.8rem;
+      color: #4f3b2b;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+    }
+
+    .pull-quote {
+      background: #fcf5ee;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0 1.6rem;
+      font-style: normal;
+      position: relative;
+      border: 1px solid #e8d9cb;
+    }
+
+    .pull-quote::before {
+      content: "“";
+      font-size: 2.8rem;
+      color: #c7a17c;
+      line-height: 0.8;
+      display: block;
+      opacity: 0.5;
+      margin-bottom: -0.2rem;
+    }
+
+    .pull-quote p {
+      margin: 0.2rem 0 0;
+      font-weight: 450;
+      color: #4c3b2d;
+    }
+
+    .pull-quote .attr {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #8e7a65;
+    }
+
+    a {
+      color: #b7753a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+      padding: 0 0.1rem;
+      border-radius: 6px;
+    }
+
+    a:hover {
+      border-bottom-color: #b7753a;
+      background: #f5e7da;
+    }
+
+    .btn-like-link {
+      display: inline-block;
+      background: #ebd8c4;
+      color: #3b2a1c;
+      font-weight: 500;
+      padding: 0.45rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      border: none;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      text-decoration: none;
+      border-bottom: none;
+    }
+
+    .btn-like-link:hover {
+      background: #ddc3ab;
+      transform: scale(1.01);
+      border-bottom: none;
+    }
+
+    .faq-mini {
+      background: #f7efe7;
+      border-radius: 24px;
+      padding: 1.6rem 1.8rem;
+      margin-top: 2.4rem;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.1rem;
+      font-weight: 550;
+      margin-bottom: 0.7rem;
+      color: #4f3b2b;
+    }
+
+    .faq-mini dt {
+      font-weight: 500;
+      margin-top: 0.9rem;
+      color: #3f2f23;
+    }
+
+    .faq-mini dd {
+      margin-left: 0.2rem;
+      color: #5f4c3b;
+      font-size: 0.95rem;
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #7e6b58;
+      border-top: 1px solid #e5d7ca;
+      padding-top: 1.8rem;
+    }
+
+    .inline-light {
+      background: #f5ede5;
+      padding: 0.05rem 0.4rem;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="blog-card">
+    <h1 class="article-title">极速赛车：一眼看清它是什么</h1>
+    <div class="article-meta">
+      随笔 · 产品速写
+      <span>简读</span>
+    </div>
+
+    <p class="lead">
+      <strong>一个页面，聚集了跟速度、操控、赛车文化相关的内容。</strong> 
+      没有复杂的门槛，也没有冗长的介绍——你想快速知道这个网站适不适合自己，读下去就对了。
+    </p>
+
+    <p>
+      第一次打开 <a href="https://h5-speedracing.com">极速赛车</a> 的页面时，最先注意到的是那种干脆的节奏。没有弹窗广告，没有眼花缭乱的排行榜，更像是为喜欢赛车氛围的人准备的一个信息聚合地。无论是简单了解赛事的规则变化，还是随手翻翻最近有哪些改装案例，都可以从这里开始。
+    </p>
+
+    <p>
+      对很多人来说，“赛车”这个词往往跟专业赛道、昂贵设备绑在一起，显得有距离感。但实际浏览下来，你会发现它更接近于一种兴趣分享——有人聊引擎调校，有人贴出周末赛道日的随拍，也有技术向的图解。内容不算深，但足够让新人对基本术语有个印象。
+    </p>
+
+    <div class="pull-quote">
+      <p>速度不是唯一的主角，让更多人对这项运动产生兴趣，本身就是一件有意思的事。</p>
+      <span class="attr">——摘自站点某篇手记</span>
+    </div>
+
+    <h2>哪些人可能会觉得有用？</h2>
+    <p>
+      如果你刚刚开始关注赛车资讯，或者想找一份不那么“硬核”的入门读物，<span class="inline-light">极速赛车</span> 的定位恰好卡在专业和大众之间。页面里很少出现大段的数据表格，更多是用日常语言解释一辆车的特性、一场比赛的转折点。偶尔也能看到一些关于赛道安全、驾驶礼仪的小贴士，比较贴近真实体验。
+    </p>
+
+    <p>
+      另外，它对移动端的适配做得比较自然。用手机打开排版不会变形，图片也提前做了优化——这对习惯碎片时间阅读的人来说是加分项。不需要下载额外的应用，浏览器里直接看，省事。
+    </p>
+
+    <h2>几个值得留意的细节</h2>
+    <p>
+      网站上的文章更新频率不算快，但每篇都保留了作者的个人视角，读起来不像机器翻译或者拼凑的资讯。部分内容会附带原图或简单示意图，帮助理解一些机械原理，比如悬挂系统的差别、轮胎配方对抓地力的影响等等。偏实用向。
+    </p>
+
+    <p>
+      如果你只是想找个地方安静地看些跟车有关的东西，不被算法推着走，这里挺合适。没有社交压力，没有弹窗催促注册，纯粹的信息浏览。
+    </p>
+
+    <div class="faq-mini">
+      <h3>🍃 几个常见疑问（简明版）</h3>
+      <dl>
+        <dt>需要付费吗？</dt>
+        <dd>目前所有内容都可以免费阅览，没有隐藏的收费墙。</dd>
+        <dt>更新频率大概多久？</dt>
+        <dd>每周 1–2 篇，不固定日期，但持续有内容。</dd>
+        <dt>适合完全不懂车的人吗？</dt>
+        <dd>大部分文章用词生活化，即使不了解专业术语也能看懂七成。</dd>
+      </dl>
+    </div>
+
+    <p style="margin-top: 1.8rem;">
+      如果你是第一次听说 <a href="https://h5-speedracing.com" class="btn-like-link">极速赛车</a>，不妨花几分钟翻翻首页的几篇短文。没有压力，也不需要注册——打开即读，觉得对味就多看两眼。
+    </p>
+
+    <div class="footer-note">
+      <span style="display: block;">写在后头：任何兴趣都可以从一小段文字开始。希望这个页面能帮你省下一点点筛选的时间。</span>
+    </div>
+  </div>
+</body>
+</html>
