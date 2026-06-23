@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游娱乐 · 站点介绍与可信指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde4c2 0%, #f9d3a6 35%, #f5c48b 65%, #efb777 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            color: #2e241b;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 头部卡片 —— hero 区域 */
+        .hero-card {
+            background: rgba(255, 248, 235, 0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 36px;
+            padding: 2.5rem 2.8rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 12px 28px rgba(120, 70, 30, 0.18), 0 0 0 1px rgba(255, 215, 165, 0.4);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .site-badge {
+            display: inline-block;
+            background: #d6995c;
+            color: #fff6ea;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #4f321c;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-card p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #5c3f28;
+        }
+
+        /* 网格容器：目录感布局 */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 6px 20px rgba(100, 60, 30, 0.10);
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 235, 210, 0.6);
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 28px rgba(140, 90, 40, 0.15);
+            border-color: #eac49a;
+        }
+
+        .card .card-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #eed7b6;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: #663f1e;
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 650;
+            color: #3b2819;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid #edd5b0;
+            padding-bottom: 0.4rem;
+            display: inline-block;
+        }
+
+        .card p, .card ul {
+            color: #3d2d1d;
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #b88249;
+            font-weight: bold;
+        }
+
+        .card-highlight {
+            background: #fffbf2;
+            border-left: 6px solid #d6995c;
+        }
+
+        /* 三列信息区（FAQ 摘要 + 相关） */
+        .info-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .info-item {
+            background: rgba(255, 248, 235, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 1.4rem 1.4rem 1.6rem;
+            border: 1px solid rgba(255, 235, 200, 0.5);
+        }
+
+        .info-item h3 {
+            font-size: 1.1rem;
+            color: #4d311b;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .info-item p {
+            font-size: 0.9rem;
+            color: #4a3623;
+        }
+
+        .info-item .faq-q {
+            font-weight: 600;
+            color: #3f2a17;
+        }
+
+        /* 提示区 —— 圆角按钮感链接 */
+        .notice-block {
+            background: #fff6e8;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 2px 10px rgba(170, 110, 50, 0.12);
+            margin: 0.5rem 0 1.2rem 0;
+            border: 1px solid #ebcfad;
+        }
+
+        .notice-block span {
+            font-weight: 500;
+            color: #54361e;
+        }
+
+        .link-button {
+            display: inline-block;
+            background: #c98748;
+            color: #fff4e3;
+            font-weight: 550;
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid #b6763b;
+            letter-spacing: 0.3px;
+        }
+
+        .link-button:hover {
+            background: #b46f31;
+            transform: scale(1.02);
+            color: #fffdf9;
+        }
+
+        .text-link {
+            color: #9f5d24;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #c99255;
+        }
+
+        .text-link:hover {
+            color: #6a3f17;
+            border-bottom-style: solid;
+        }
+
+        /* 底边 */
+        .footer-note {
+            margin-top: 2.8rem;
+            text-align: center;
+            padding: 1.2rem 0 0.4rem;
+            border-top: 1px solid #eacbaa;
+            color: #60482f;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 860px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .hero-card h1 {
+                font-size: 2rem;
+            }
+            .hero-card {
+                padding: 1.8rem 1.2rem;
+            }
+            .notice-block {
+                flex-wrap: wrap;
+                border-radius: 40px;
+                padding: 0.8rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .card {
+                padding: 1.3rem;
+            }
+            .hero-card h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero 卡片：站点介绍角度 -->
+    <header class="hero-card">
+        <div class="site-badge">可信入口 · 知识库</div>
+        <h1>九游娱乐 · 站点导览</h1>
+        <p>面向希望快速了解「九游娱乐」服务背景、可信说明与相关信息的访客，提供结构化的参考入口。本页为介绍性索引页，非官方门户。</p>
+    </header>
+
+    <!-- 网格布局：介绍 + 特点 + 场景 + 说明 -->
+    <div class="grid-layout">
+
+        <div class="card">
+            <div class="card-icon">📋</div>
+            <h2>站点背景</h2>
+            <p><strong>九游娱乐</strong> 是一个综合性的数字娱乐内容平台，长期聚焦于互动体验与休闲场景。该站点主要提供游戏资讯、社区内容及辅助工具索引，覆盖多种终端用户。根据公开资料，其运营主体具备相应的网络文化经营资质，并持续进行合规维护。本站点介绍力求客观呈现已知信息，访问者可通过下方链接直接了解平台实际内容。</p>
+            <p style="margin-top: 1rem;">→ 前往了解 <a href="https://wapmain-jiuyou.com" class="text-link">九游娱乐</a> 当前服务。</p>
+        </div>
+
+        <div class="card card-highlight">
+            <div class="card-icon">📌</div>
+            <h2>可信说明</h2>
+            <ul>
+                <li>站点采用 HTTPS 加密传输，数据传输过程受保护。</li>
+                <li>注册与使用须遵守对应平台用户协议及隐私政策。</li>
+                <li>本介绍页为独立知识库页面，与站方无直接隶属关系。</li>
+                <li>所有引用信息均基于公开可查的运营与备案信息。</li>
+                <li>建议用户自行核实 <a href="https://wapmain-jiuyou.com" class="text-link">九游娱乐</a> 的最新条款与版本。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🎮</div>
+            <h2>常见场景</h2>
+            <p>用户通常通过 <a href="https://wapmain-jiuyou.com" class="text-link">九游娱乐</a> 获取以下服务：</p>
+            <ul>
+                <li>浏览热门游戏动态与版本更新</li>
+                <li>查找游戏礼包、攻略及社区讨论</li>
+                <li>使用账号关联与内容收藏功能</li>
+                <li>参与线上活动或领取福利</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h2>访问提示</h2>
+            <p>建议通过最新版浏览器访问，并保持操作系统与安全补丁更新。部分功能可能需要注册账户或启用 Cookie。如遇到加载异常，可尝试清除缓存或更换网络环境。若需反馈问题，可尝试站内客服或帮助中心。</p>
+            <div class="notice-block">
+                <span>📎 快捷参考</span>
+                <a href="https://wapmain-jiuyou.com" class="link-button">九游娱乐</a>
+                <span style="color:#73512f;">· 直接入口</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 三列信息区：FAQ 摘要 + 相关信息 + 补充说明 -->
+    <div class="info-row">
+        <div class="info-item">
+            <h3>❓ 常见疑问摘要</h3>
+            <p><span class="faq-q">Q：该平台是否免费？</span><br>大部分内容免费浏览，部分增值服务或虚拟道具需付费。具体以平台页面说明为准。</p>
+            <p style="margin-top: 0.7rem;"><span class="faq-q">Q：账号如何注册？</span><br>一般通过手机号或第三方授权登录，具体流程可参考 <a href="https://wapmain-jiuyou.com" class="text-link">九游娱乐</a> 注册页。</p>
+        </div>
+        <div class="info-item">
+            <h3>📘 相关信息</h3>
+            <p>平台通常提供 Android、iOS 及 PC 模拟器适配。过往运营记录显示其参与过多场游戏展会及线上推广活动。内容库涵盖角色扮演、策略、休闲等多品类。</p>
+        </div>
+        <div class="info-item">
+            <h3>📎 补充说明</h3>
+            <p>本知识库页面内容仅供初步参考，不构成任何形式的推荐或担保。用户应基于自身判断访问并使用 <a href="https://wapmain-jiuyou.com" class="text-link">九游娱乐</a> 提供的服务。平台规则可能调整，请以实际页面为准。</p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <span>九游娱乐 · 站点介绍与可信说明  |  信息索引页  |  基于公开资料整理  |  持续更新</span>
+    </div>
+
+</div>
+</body>
+</html>
